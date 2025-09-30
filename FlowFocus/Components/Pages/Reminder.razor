@@ -1,0 +1,43 @@
+﻿@page "/reminder"
+@using FlowFocus.Services
+@inject ReminderService ReminderService
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize]
+
+<h3 class="mb-3">💡 FlowFocus Reminder</h3>
+
+<div class="card p-3 shadow-sm">
+    <p class="lead">@currentReminder</p>
+    <button class="btn btn-primary" @onclick="GetNewReminder">Refresh Now</button>
+</div>
+
+@code {
+    private string? currentReminder;
+    private PeriodicTimer? timer;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await GetNewReminder();
+
+        // auto-refresh every 5 minutes
+        timer = new PeriodicTimer(TimeSpan.FromMinutes(5));
+        _ = Task.Run(async () =>
+        {
+            while (await timer.WaitForNextTickAsync())
+            {
+                currentReminder = await ReminderService.GetReminderAsync();
+                await InvokeAsync(StateHasChanged);
+            }
+        });
+    }
+
+    private async Task GetNewReminder()
+    {
+        currentReminder = await ReminderService.GetReminderAsync();
+    }
+
+    public void Dispose()
+    {
+        timer?.Dispose();
+    }
+}
