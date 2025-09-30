@@ -42,3 +42,11 @@
     ```
 
 5. Open your browser and navigate to `https://localhost:5001` (or the URL shown in the console).
+
+### IMPORTANT INFORMATION
+
+Check the license info for the branch - this has been given to "Creative Commons" terms.
+
+**UNDERSTAND THAT THIS IS PROOF-OF-CONCEPT CODE.** The burden of making sure if works as intended, works for your purpose, and works without liability to you, others, your property, or otherwise, **IS UP TO YOU.** I take no responsibility for the code now or after you choose to clone the repository. Changes (if any) will be done at my personal discretion.
+
+**UNDERSTAND YOU ARE ABLE TO CLONE AND USE THIS CODEBASE.** The code has been given to "Creative Commons" so you can clone, play with, and extend it as you wish. *AGAIN* - this code is made available on an "as-is" basis.
